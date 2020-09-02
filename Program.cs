@@ -1,74 +1,88 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DeleGatesProgram
+namespace DelegateExampleAll
 {
-    public delegate void addDele(int x, int y);
-    public delegate string sayDele(string name);
-    public delegate void areaDele(int c, int d);
-   // public delegate void premeterDele(int a, int b);
+    /*public delegate double addDel1(int a, float b, double c);
+    public delegate void addDel2(int a, float b, double c);
+    public delegate bool addDel3(string str);*/
     class Program
     {
-        public void add(int x, int y)
+        /*public static double addnum1( int a, float b,double c)
         {
-            Console.WriteLine(x + y);
-
+            return a + b + c;
         }
-        public static string sayHello( string name)
+        public static void addnum2(int a, float b, double c)
         {
-            return "Hello" + name;
-
+           
+            Console.WriteLine(a + b + c);
         }
-        public void area(int a,int b)
+        public static bool addnum3(string str)
         {
-            Console.WriteLine(a * b);
+            if (str.Length >= 5)
+            {
+                return true;
+            }
+            else return false;
 
-        }
-        public  void PareMeter(int c, int d)
+        }*/
+
+            static void Main(string[] args)
         {
-            Console.WriteLine((c+d)*2);
-
-        }
-
-        static void Main(string[] args)
-        {
-            Program p = new Program();
-
-            /*p.add(12, 23);
-            Console.WriteLine();
-            string str=sayHello("Krishna");
-            Console.WriteLine(str);
-            Console.ReadLine();
-       */
-
-           addDele ad = new addDele(p.add);
-            //ad(100, 50);
-            ad.Invoke(100, 50);
+            /* double num = addnum1(10, 230, 47);
+             Console.WriteLine(num);
+             addnum2(12, 33, 44);
+             bool b = addnum3("arrr");
+             Console.WriteLine(b);*/
 
 
-            sayDele str = new sayDele(Program.sayHello);
-           string str1= str.Invoke("subhransu");
-            Console.WriteLine(str1);
+            //using deligate write the name
 
 
-            /*p.area(5, 6);
-            PareMeter(10, 20);
-           */
-            /*
-                        areaDele addd = new areaDele(p.area);
-                        addd.Invoke(10, 20);
+            /*Program p = new Program();
+            addDel1 ad1 = new addDel1(Program.addnum1);
+            double num = ad1.Invoke(10, 22, 34);
+            Console.WriteLine(num);
+            addDel2 ad2 = new addDel2(Program.addnum2);
+            ad2.Invoke(10, 22, 34);
+            addDel3 ad3 = new addDel3(Program.addnum3);
+            bool b = ad3.Invoke("subhransu");
+            Console.WriteLine(b);*/
+            /*Func<int, float, double,double> obj1 = addnum1;
+            double res1 = obj1.Invoke(10, 20, 30);
+            Console.WriteLine(res1);
+            Action<int, float , double > obj2 = addnum2;
+             obj2.Invoke(10, 20, 30);
+            Predicate<string> obj3 = addnum3;
+            bool status = obj3.Invoke("subhransu");
+            Console.WriteLine(status);
 
-                        premeterDele pre = new premeterDele(Program.PareMeter);
-                        pre.Invoke(5, 20);*/
+*/
+            Func<int, double, float, double> obj1 = (x, y, z) =>
+              {
+                  return x + y + z;
+              };
+            double res1 = obj1.Invoke(10, 20, 30);
+            Console.WriteLine(res1);
+            Action<int, float, double> obj2 = (x, y, z) =>
+              {
+                  Console.WriteLine(x + y + z);
+              };
+            obj2.Invoke(10, 20, 30);
+            Predicate<string> obj3 = (str) =>
+             {
+                 if (str.Length >= 5)
+                     return true;
+                 else
+                     return false;
+ 
 
-
-            areaDele addd = new areaDele(p.area);
-          //  Object t = Program.PareMeter;
-            addd.Invoke(10, 20);
+             };
+            bool b = obj3.Invoke("subhransu");
+            Console.WriteLine(b);
 
 
 
